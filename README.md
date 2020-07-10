@@ -19,4 +19,11 @@ This is a simple Python Flask Web Application that creates an interactive gallar
 
 ## Deployment
 1. clone github repo
-  * 
+  * `git clone https://github.com/mixterj/cma-test.git`
+2. navigate to the 'cma-test/static/scripts/' directory and run the 'process_sql/py' script
+ * `cd cma-test/static/scripts/`
+ * `python3 process_sql/py`
+3. navigate to the 'cma-test' root directory and run the 'app.py' script
+ * `python3 app.py`
+4. view the app in the browser on port 5001
+ * `http://localhost:5001/`
