@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>CMA Developer Test</title>
+    {{ bootstrap.load_css() }}
+    <link rel= "stylesheet" type= "text/css" href= "/static/styles/style.css">
+</head>
+<body>
+{{ bootstrap.load_js() }}
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <img src="/static/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+    Cleveland Museum of Art
+  </a>
+  <form class="form-inline my-2 my-lg-0" action="{{ url_for('search') }}" method="POST">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="inputSearch" name="inputSearch">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-lg">
+      <h1>{{image['title']}}</h1>
+      <dl class="row">
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">{{image['tombstone']}}</dd>
+        <dt class="col-sm-3">Department</dt>
+        <dd class="col-sm-9"><a href="/department/{{image['department']['id']}}">{{image['department']['name']}}</a></dd>
+        {% if image['creator']|length > 0 %}
+            <dt class="col-sm-3">Creator</dt>
+            <dd class="col-sm-9">
+            {% for creator in image['creator'] %}
+            <dl class="row">
+              <dt class="col-sm-3">{{ creator['role']|join(", ") }}</dt>
+              <dd class="col-sm-9"><a href="/creator/{{creator['id']}}">{{creator['description']}}</a></dd>
+            </dl>
+            {% endfor %}
+            </dd>
+        {% endif %}
+
+
+      </dl>
+    </div>
+    <div class="col-lg">
+      <img src ="{{image['image']}}" class="img-fluid" />
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

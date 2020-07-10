@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <<title>CMA Developer Test</title>
+    {{ bootstrap.load_css() }}
+    <link rel= "stylesheet" type= "text/css" href= "/static/styles/style.css">
+</head>
+<body>
+{{ bootstrap.load_js() }}
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <img src="/static/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+    Cleveland Museum of Art
+  </a>
+  <form class="form-inline my-2 my-lg-0" action="{{ url_for('search') }}" method="POST">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="inputSearch" name="inputSearch">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+<div class="container">
+  <div class="row">
+      <h1>{{creator['description']}}</h1>
+  </div>
+  <div class="row">
+    <p>Art by {{creator['description']}}:</p>
+  </div>
+  <div class="row">
+    {% for i in creator['artworks'] %}
+        <div class="col-sm padding">
+          <div class="card h-100 padding" style="width: 18rem;">
+            <img src ="{{images[i]['image']}}" class="card-img-top" />
+            <div class="card-body flex-fill">
+              <h5 class="card-title">{{images[i]['title']}}</h5>
+              <p class="card-text">{{images[i]['description']}}</p>
+              <a href="/details/{{i}}" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+</div>
+
+</body>
+</html>
