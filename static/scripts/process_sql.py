@@ -1,28 +1,29 @@
+# Script to extract transform and load data from SQL datafile into JSON document
+# author: Jeff Mixter
+# email: jeffmixter@gmail.com
+
+# import libraries
 import sqlite3, json
-conn = sqlite3.connect('../database/cma-artworks.db')
-cursor = conn.cursor()
-# cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-# print(cursor.fetchall())
 
-#[('artwork__department',), ('artwork',), ('creator',), ('department',), ('artwork__creator',)]
-
-# [(0, 'id', '', 0, None, 0), (1, 'accession_number', '', 0, None, 0), (2, 'title', '', 0, None, 0), (3, 'tombstone', '', 0, None, 0)]
+# set variables
 global artwork_dic
 artwork_dic = {}
 
+
+# connect to the SQL file
+conn = sqlite3.connect('../database/cma-artworks.db')
+cursor = conn.cursor()
+
+
 def main():
-    # cursor.execute("PRAGMA table_info(artwork__creator)")
-    # print (cursor.fetchall())
     global artwork_dic
-    #get artwork ID
     cursor.execute("""SELECT DISTINCT artwork.id, artwork.accession_number, artwork.title, artwork.tombstone
     FROM artwork
     """)
     rows = cursor.fetchall()
 
-    ## build artwork diction
+    ## build artwork dictionary
     for row in rows:
-        #print(row)
         id = row[0]
         accession_number = row[1]
         title = row[2]
@@ -34,13 +35,16 @@ def main():
         artwork_dic[id]['tombstone'] = tombstone
         artwork_dic[id]['department'] = {}
         artwork_dic[id]['creator'] = []
+    # process the departments table
     process_departments()
+    # process the creators table
     process_creators()
     with open('../data/image-data.json', 'w') as outfile:
         json.dump(artwork_dic, outfile)
     outfile.close()
 
 def process_departments():
+    # build department objects to connect to the artwork records
     global artwork_dic
     for id in artwork_dic.keys():
         cursor.execute("""SELECT artwork__department.department_id
@@ -63,6 +67,7 @@ def process_departments():
             artwork_dic[id]['department'].update(department_dic)
 
 def process_creators():
+    # build creator objects to connect to the artwork records
     global artwork_dic
     for id in artwork_dic.keys():
         cursor.execute("""SELECT artwork__creator.creator_id
@@ -93,6 +98,4 @@ def process_creators():
 
 
 if __name__ == "__main__":
-
-    # call the main function, passing along arguments
     main()
