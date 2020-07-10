@@ -11,19 +11,19 @@ This is a simple Python Flask Web Application that creates an interactive gallar
 1. install [Python3](https://www.python.org/downloads/)
 2. install PIP3
 3. install Flask library
-  `sudo pip3 install flask`
+  * `sudo pip3 install flask`
 4. install Flask Boostrap library
-  `sudo pip3 install flask-bootstrap`
+  * `sudo pip3 install flask-bootstrap`
 5. install sqlite3 library
-  `sudo pip3 install sqlite3`
+  * `sudo pip3 install sqlite3`
 
 ## Deployment
 1. clone github repo
-  `git clone https://github.com/mixterj/cma-test.git`
+  * `git clone https://github.com/mixterj/cma-test.git`
 2. navigate to the 'cma-test/static/scripts/' directory and run the 'process_sql/py' script
- `cd cma-test/static/scripts/`
- `python3 process_sql/py`
+ * `cd cma-test/static/scripts/`
+ * `python3 process_sql/py`
 3. navigate to the 'cma-test' root directory and run the 'app.py' script
- `python3 app.py`
+ * `python3 app.py`
 4. view the app in the browser on port 5001
- `http://localhost:5001/`
+ * `http://localhost:5001/`
