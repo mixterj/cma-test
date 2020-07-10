@@ -10,6 +10,8 @@ import re, os
 # declaring app name
 app = Flask(__name__)
 
+## do pre-processing of the artwork json metadata file prior to creating the actual web app ##
+
 # set variables for app
 bootstrap = Bootstrap(app)
 image_list = []
@@ -57,6 +59,8 @@ for key, value in images.items():
         department_dict[value['department']['id']]['name'] = value['department']['name']
     else:
         department_dict[value['department']['id']]['artworks'].append(key)
+
+## Web application code ##
 
 # defining home page
 @app.route('/')
