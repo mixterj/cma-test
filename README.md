@@ -4,7 +4,7 @@ This is a simple Python Flask Web Application that creates an interactive gallar
 ## Requirements
 * Python3
 * Python3 Flask library
-* Python3 Flask Boostrap library
+* Python3 Boostrap Flask library
 * Python3 sqlite3 library
 
 ## Install
