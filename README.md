@@ -12,7 +12,7 @@ This is a simple Python Flask Web Application that creates an interactive gallar
 3. install Flask library
   * `sudo pip3 install flask`
 4. install Flask Boostrap library
-  * `sudo pip3 install flask-bootstrap`
+  * `sudo pip3 install Bootstrap-Flask`
 5. install sqlite3 library
   * `sudo pip3 install sqlite3`
 
